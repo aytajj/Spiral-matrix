@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input type="number" name="" id="number" placeholder="Enter number">
+    <button onclick="createMatrix()">Create matrix</button>
+</body>
+<script>
+createMatrix=()=>{
+    var number=document.getElementById("number").value
+    let matrix = new Array(number).fill().map(() => new Array(number).fill(''));
+    let counter = 1;
+    let startCol = 0;
+    let endCol = number - 1;
+    let startRow = 0;
+    let endRow = number - 1;
+    while (startCol <= endCol && startRow <= endRow) {
+        for (let i = startCol; i <= endCol; i++) {
+            matrix[startRow][i] = counter;
+            counter++;
+        }
+        startRow++;
+        for (let j = startRow; j <= endRow; j++) {
+            if( typeof matrix[j] == 'undefined' ) matrix[j] = new Array();
+            matrix[j][endCol] = counter;
+            counter++;
+        }
+
+        endCol--;
+
+        for (let i = endCol; i >= startCol; i--) {
+            matrix[endRow][i] = counter;
+            counter++;
+        }
+
+        endRow--;
+        for (let i = endRow; i >= startRow; i--) {
+            matrix[i][startCol] = counter;
+            counter++;
+        }
+
+        startCol++;
+
+    }
+
+    console.log(matrix);
+    return matrix;
+
+}
+
+
+</script>
+</html>
